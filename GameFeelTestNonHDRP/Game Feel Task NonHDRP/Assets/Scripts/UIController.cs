@@ -34,6 +34,12 @@ public class UIController : MonoBehaviour
     public Camera cam1;
     public Camera cam2;
 
+    public PostProcessProfile camPostProcessing;
+    public Toggle bloomToggle;
+    public Toggle screenSpaceReflectionsToggle;
+    public Toggle grainToggle;
+    public Toggle ambientOcclusionToggle;
+
     void Start()
     {
         menu.SetActive(false);
@@ -47,25 +53,25 @@ public class UIController : MonoBehaviour
         if (rocketSpeedFloat == 0)
         {
             rocketSpeedText.text = "Rocket speed: \n" + "1";
-            uiRocketSpeed = 10f;
+            uiRocketSpeed = 5f;
         }
 
         if (rocketSpeedFloat == 1)
         {
             rocketSpeedText.text = "Rocket speed: \n" + "2";
-            uiRocketSpeed = 20f;
+            uiRocketSpeed = 10f;
         }
 
         if (rocketSpeedFloat == 2)
         {
             rocketSpeedText.text = "Rocket speed: \n" + "2";
-            uiRocketSpeed = 20f;
+            uiRocketSpeed = 10f;
         }
 
         if (rocketSpeedFloat == 3)
         {
             rocketSpeedText.text = "Rocket speed: \n" + "3";
-            uiRocketSpeed = 30f;
+            uiRocketSpeed = 20f;
         }
 
         if (isInfinite)
@@ -124,6 +130,54 @@ public class UIController : MonoBehaviour
         {
             cam1.GetComponent<PostProcessLayer>().enabled = false;
             cam2.GetComponent<PostProcessLayer>().enabled = false;
+        }
+    }
+
+    public void Bloom()
+    {
+        if (bloomToggle.isOn)
+        {
+            camPostProcessing.GetSetting<Bloom>().active = true;
+        }
+        else
+        {
+            camPostProcessing.GetSetting<Bloom>().active = false;
+        }
+    }
+
+    public void ScreenSpaceReflections()
+    {
+        if (screenSpaceReflectionsToggle.isOn)
+        {
+            camPostProcessing.GetSetting<ScreenSpaceReflections>().active = true;
+        }
+        else
+        {
+            camPostProcessing.GetSetting<ScreenSpaceReflections>().active = false;
+        }
+    }
+
+    public void Grain()
+    {
+        if (grainToggle.isOn)
+        {
+            camPostProcessing.GetSetting<Grain>().active = true;
+        }
+        else
+        {
+            camPostProcessing.GetSetting<Grain>().active = false;
+        }
+    }
+
+    public void AmbientOcclusion()
+    {
+        if (ambientOcclusionToggle.isOn)
+        {
+            camPostProcessing.GetSetting<AmbientOcclusion>().active = true;
+        }
+        else
+        {
+            camPostProcessing.GetSetting<AmbientOcclusion>().active = false;
         }
     }
 
