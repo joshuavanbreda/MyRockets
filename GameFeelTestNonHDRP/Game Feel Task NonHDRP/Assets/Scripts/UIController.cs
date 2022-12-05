@@ -44,6 +44,11 @@ public class UIController : MonoBehaviour
     {
         menu.SetActive(false);
         menu.transform.localScale = new Vector3(0, 0, 0);
+
+        BloomToggle();
+        ScreenSpaceReflectionsToggle();
+        GrainToggle();
+        AmbientOcclusionToggle();
     }
 
     void Update()
@@ -133,11 +138,12 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void Bloom()
+    public void BloomToggle()
     {
         if (bloomToggle.isOn)
         {
             camPostProcessing.GetSetting<Bloom>().active = true;
+
         }
         else
         {
@@ -145,7 +151,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void ScreenSpaceReflections()
+    public void ScreenSpaceReflectionsToggle()
     {
         if (screenSpaceReflectionsToggle.isOn)
         {
@@ -157,7 +163,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void Grain()
+    public void GrainToggle()
     {
         if (grainToggle.isOn)
         {
@@ -169,7 +175,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void AmbientOcclusion()
+    public void AmbientOcclusionToggle()
     {
         if (ambientOcclusionToggle.isOn)
         {

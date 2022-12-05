@@ -998,7 +998,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 69396878}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ScreenSpaceReflections
+        m_MethodName: ScreenSpaceReflectionsToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2395,7 +2395,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 69396878}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: Grain
+        m_MethodName: GrainToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3846,7 +3846,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 69396878}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: Bloom
+        m_MethodName: BloomToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5572,7 +5572,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 69396878}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: AmbientOcclusion
+        m_MethodName: AmbientOcclusionToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
