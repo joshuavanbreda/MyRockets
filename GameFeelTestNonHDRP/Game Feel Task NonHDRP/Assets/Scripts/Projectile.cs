@@ -6,13 +6,14 @@ using EZCameraShake;
 public class Projectile : MonoBehaviour
 {
     private RocketPool rocketPoolScript;
+    private UIController uIController;
 
     private GameObject fireTrail;
     public GameObject lineTrail;
     public GameObject fireTrailStylized;
-    public float speed = 10;
+    public float speed;
     public Rigidbody _RB;
-    public float waitTime = 2f;
+    public float waitTime;
 
     private bool restart = false;
 
@@ -23,16 +24,17 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
+        uIController = GameObject.FindGameObjectWithTag("Main Canvas").GetComponent<UIController>();
+        _RB = GetComponent<Rigidbody>();
+        speed = uIController.uiRocketSpeed;
         fireTrail = transform.GetChild(0).gameObject;
         rocketPoolScript = GameObject.Find("GameController").GetComponent<RocketPool>();
-
-        _RB = GetComponent<Rigidbody>();
         
     }
 
-    // Update is called once per frame
     void Update()
     {
+        speed = uIController.uiRocketSpeed;
         waitTime -= Time.deltaTime;
         if (waitTime <= 0)
         {
@@ -51,6 +53,30 @@ public class Projectile : MonoBehaviour
                 fireTrailStylized.SetActive(true);
             }
 
+            if (uIController.canSeeTrails)
+            {
+                if (gameObject.tag == "Rocket1")
+                {
+                    fireTrailStylized.SetActive(true);
+                }
+                if (gameObject.tag == "Rocket2")
+                {
+                    lineTrail.SetActive(true);
+                }
+
+                if (gameObject.tag == "Rocket3")
+                {
+                    fireTrail.SetActive(true);
+                }
+            }
+            else
+            {
+                fireTrailStylized.SetActive(false);
+                lineTrail.SetActive(false);
+                fireTrail.SetActive(false);
+            }
+
+
             _RB.velocity = new Vector3(0, 0, -speed);
         }
     }
@@ -58,7 +84,6 @@ public class Projectile : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            //Destroy(gameObject);
 
             if (gameObject.tag == "Rocket1")
             {
@@ -68,7 +93,7 @@ public class Projectile : MonoBehaviour
                 gameObject.transform.position = rocketPoolScript.rocketPoolPosVec1;
                 gameObject.GetComponent<Projectile>().enabled = false;
 
-                fireTrailStylized.SetActive(true);
+                fireTrailStylized.SetActive(false);
 
                 CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
             }

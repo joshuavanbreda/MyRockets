@@ -4,26 +4,18 @@ using UnityEngine;
 
 public class RocketPool : MonoBehaviour
 {
-    public int PoolSize = 5;
-    public GameObject columnPrefab;
-    public float spawnRate = 4f;
-    public float columnMin = -1f;
-    public float columnMax = 3.5f;
+    public UIController uiController;
 
-    private GameObject[] columns;
-    private Vector3 objectPoolPosition = new Vector3(-15f, -25f, 100f);     //A holding position for our unused blocks offscreen.
-    private float timeSinceLastSpawned;
-    private float spawnXPosition = 211f;                                     //position in the distance to spawn and loop buildings/environment (forward x axis)\
-    private float spawnZPosition = 0;                                     //position of the buildings to the side to line up next to the road
-    private int currentColumn = 0;
+    public int PoolSize = 5;
+    public float spawnRate = 4f;
 
     public GameObject rocket1Prefab;
     public GameObject rocket2Prefab;
     public GameObject rocket3Prefab;
 
-    private GameObject[] rocket1Pool;
-    private GameObject[] rocket2Pool;
-    private GameObject[] rocket3Pool;
+    public GameObject[] rocket1Pool;
+    public GameObject[] rocket2Pool;
+    public GameObject[] rocket3Pool;
 
     public GameObject rocketPoolPos1;
     public Vector3 rocketPoolPosVec1;
@@ -43,19 +35,18 @@ public class RocketPool : MonoBehaviour
     private float timeSinceLastSpawned2;
     private float timeSinceLastSpawned3;
 
-    private int rocket1CurrentPoolIndex = 0;
-    private int rocket2CurrentPoolIndex = 0;
-    private int rocket3CurrentPoolIndex = 0;
+    public int rocket1CurrentPoolIndex = 0;
+    public int rocket2CurrentPoolIndex = 0;
+    public int rocket3CurrentPoolIndex = 0;
 
     private bool canShoot1 = false;
     private bool canShoot2 = false;
     private bool canShoot3 = false;
 
-    private bool canPress1 = true;
-    private bool canPress2 = true;
-    private bool canPress3 = true;
+    public bool canPress1 = true;
+    public bool canPress2 = true;
+    public bool canPress3 = true;
 
-    // Start is called before the first frame update
     void Start()
     {
         rocketPoolPosVec1 = rocketPoolPos1.transform.position;
@@ -85,10 +76,6 @@ public class RocketPool : MonoBehaviour
         }
     }
 
-
-
-
-    // Update is called once per frame
     void Update()
     {
         
@@ -147,7 +134,7 @@ public class RocketPool : MonoBehaviour
         {
             canShoot1 = true;
             rocket1Pool[rocket1CurrentPoolIndex].GetComponent<Projectile>().enabled = true;
-            rocket1Pool[rocket1CurrentPoolIndex].GetComponent<Projectile>().waitTime = 2;
+            rocket1Pool[rocket1CurrentPoolIndex].GetComponent<Projectile>().waitTime = uiController.rocketWaitModifier;
             StartCoroutine(CanSpawn1());
         }
     }
@@ -158,7 +145,7 @@ public class RocketPool : MonoBehaviour
         {
             canShoot2 = true;
             rocket2Pool[rocket2CurrentPoolIndex].GetComponent<Projectile>().enabled = true;
-            rocket2Pool[rocket1CurrentPoolIndex].GetComponent<Projectile>().waitTime = 2;
+            rocket2Pool[rocket2CurrentPoolIndex].GetComponent<Projectile>().waitTime = uiController.rocketWaitModifier;
             StartCoroutine(CanSpawn2());
         }
     }
@@ -169,7 +156,7 @@ public class RocketPool : MonoBehaviour
         {
             canShoot3 = true;
             rocket3Pool[rocket3CurrentPoolIndex].GetComponent<Projectile>().enabled = true;
-            rocket3Pool[rocket1CurrentPoolIndex].GetComponent<Projectile>().waitTime = 2;
+            rocket3Pool[rocket3CurrentPoolIndex].GetComponent<Projectile>().waitTime = uiController.rocketWaitModifier;
             StartCoroutine(CanSpawn3());
         }
     }

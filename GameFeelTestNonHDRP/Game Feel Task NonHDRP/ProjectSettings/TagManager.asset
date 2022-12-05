@@ -9,6 +9,7 @@ TagManager:
   - Rocket2
   - Rocket3
   - Trails
+  - Main Canvas
   layers:
   - Default
   - TransparentFX
